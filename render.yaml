@@ -1,0 +1,12 @@
+# Exported from Render on 2025-08-31T15:06:38Z
+services:
+- type: web
+  name: imei-report
+  runtime: python
+  repo: https://github.com/Nori-02/hello-compute
+  plan: free
+  region: oregon
+  buildCommand: pip install -r requirements.txt
+  startCommand: gunicorn your_application.wsgi
+  autoDeployTrigger: commit
+version: "1"
