@@ -2,15 +2,13 @@
   "name": "imei-report",
   "version": "1.1.0",
   "description": "Bilingual IMEI lost/stolen report site (AR/EN) with admin UI",
-  "type": "module",
-  {
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
-  },
-}
-  "dependencies": {
+"type": "module",
+"main": "server.js",
+"scripts": {
+  "start": "node server.js",
+  "dev": "nodemon server.js"
+},
+"dependencies": {
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -23,6 +21,3 @@
     "nodemon": "^3.1.0"
   }
 }
-
-
-
