@@ -4,7 +4,7 @@ dotenv.config();
 let db = null;
 let isPostgres = false;
 
-// دالة تهيئة الاتصال بقاعدة البيانات
+// تهيئة الاتصال حسب البيئة
 export async function initDB() {
   if (process.env.DATABASE_URL) {
     // PostgreSQL على Render
@@ -17,30 +17,28 @@ export async function initDB() {
     isPostgres = true;
     console.log('✅ Connected to PostgreSQL!');
   } else {
-    // SQLite محليًا
-    const sqlite3 = (await import('sqlite3')).default;
-    const { open } = await import('sqlite');
-    db = await open({
-      filename: './local.db',
-      driver: sqlite3.Database
-    });
+    // SQLite محليًا عبر better-sqlite3
+    const Database = (await import('better-sqlite3')).default;
+    db = new Database('./local.db');
     isPostgres = false;
-    console.log('✅ Connected to SQLite!');
+    console.log('✅ Connected to better-sqlite3 (SQLite)!');
   }
 }
 
-// استعلام موحد (يدعم SELECT/INSERT/UPDATE/DELETE)
+// استعلام موحد (SELECT/INSERT/UPDATE/DELETE)
 export async function query(sql, params = []) {
   if (!db) throw new Error('Database not initialized!');
   if (isPostgres) {
     const res = await db.query(sql, params);
     return res.rows;
   } else {
-    // SQLite: إذا كان الاستعلام SELECT
+    // better-sqlite3: الاستعلامات
     if (/^\s*select/i.test(sql)) {
-      return await db.all(sql, params);
+      const stmt = db.prepare(sql);
+      return stmt.all(params);
     } else {
-      return await db.run(sql, params);
+      const stmt = db.prepare(sql);
+      return stmt.run(params);
     }
   }
 }
@@ -51,6 +49,6 @@ export async function closeDB() {
   if (isPostgres) {
     await db.end();
   } else {
-    await db.close();
+    db.close();
   }
 }
