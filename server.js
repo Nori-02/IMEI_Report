@@ -1,3 +1,9 @@
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", 
+    "default-src 'self'; script-src 'self' https://www.gstatic.com; style-src 'self' https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';"
+  );
+  next();
+});
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -59,3 +65,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
+
