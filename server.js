@@ -1,9 +1,3 @@
-app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", 
-    "default-src 'self'; script-src 'self' https://www.gstatic.com; style-src 'self' https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';"
-  );
-  next();
-});
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,6 +7,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 app.use(express.json());
+
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", 
+    "default-src 'self'; script-src 'self' https://www.gstatic.com; style-src 'self' https://www.gstatic.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';"
+  );
+  next();
+});
 
 // يخدم ملفات public مباشرة (index.html, styles.css, إلخ)
 app.use(express.static(path.join(__dirname, '../public')));
@@ -65,4 +66,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
+
 
