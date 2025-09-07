@@ -32,7 +32,7 @@ npm run start
 
 2. Add the following environment variable to the service settings:
 ```
-DATABASE_URL=postgres://user:password@hostname:port/dbname
+DATABASE_URL=postgresql://imei_report_db_user:LgWztZaOkxg5z9xI9g1p9dmItNlJh1EB@dpg-d2q81vt6ubrc73d2u7sg-a/imei_report_db
 ```
 
 3. Execute the existing schema file named `schema.postgres.sql` in your PostgreSQL database (manually or via the control panel).
