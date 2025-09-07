@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 });
 
 // يخدم ملفات public مباشرة (index.html, styles.css, إلخ)
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 // تهيئة قاعدة البيانات
@@ -66,6 +66,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
+
 
 
 
