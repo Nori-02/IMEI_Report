@@ -59,12 +59,13 @@ app.get('/api/reports', async (req, res) => {
 
 // الصفحة الرئيسية (اختياري)
 app.get('/', (req, res) => {
-  res.send('IMEI Report API');
+  res.redirect('/index.html');
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
+
 
 
