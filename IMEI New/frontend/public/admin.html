@@ -1,42 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تسجيل دخول المشرف</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
-  <script defer src="admin.js"></script>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <span class="logo">📱</span>
-        <span>IMEI Report Admin</span>
-      </div>
-    </header>
-
-    <div class="grid">
-      <div class="card">
-        <h2>تسجيل دخول المشرف</h2>
-        <form id="loginForm" class="row">
-          <label for="username">اسم المستخدم</label>
-          <input type="text" id="username" name="username" required />
-
-          <label for="password">كلمة المرور</label>
-          <input type="password" id="password" name="password" required />
-
-          <div class="actions">
-            <button type="submit" class="primary">دخول</button>
-            <button type="reset" class="secondary">إعادة تعيين</button>
-          </div>
-        </form>
-        <div id="message" class="msg"></div>
-      </div>
-    </div>
-
-    <footer>© 2025 IMEI Report | لوحة التحكم</footer>
-  </div>
-</body>
-</html>
